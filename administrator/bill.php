@@ -84,7 +84,7 @@
                                             <small class="">Error message</small>
                                             </div>
                                              <div class="col-md-12" align="center">
-                                                    <button type="button" name="btnAdd" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal2">ດຳເນີນການອອກໃບບິນ</button>
+                                                    <button type="button" name="btnAddBill" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal2">ດຳເນີນການອອກໃບບິນ</button>
                                                     <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -144,4 +144,27 @@
 
   <?php
     include ("../header-footer/footer.php");
+
+    // check save
+  if(isset($_GET['save'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['save2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check delete
+  if(isset($_GET['del'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['del2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
   ?>
