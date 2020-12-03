@@ -126,7 +126,6 @@
                 }).get();
 
                 console.log(data); 
-
                 $('#cus_id_update').val(data[1]);
                 $('#cus_no_update').val(data[2]);
                 $('#cus_name_update').val(data[3]);
@@ -148,7 +147,22 @@
                 console.log(data); 
 
                 $('#id').val(data[1]);
-              
+          });
+// update customer
+          $('.btnUpdate_bill').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#bill_id_update').val(data[0]);
+                $('#meter_update').val(data[1]);
+                $('#no_current_update').val(data[2]);
+                $('#no_before_update').val(data[3]);
+                $('#cus_id_update').val(data[4]);
           });
 
           // update category

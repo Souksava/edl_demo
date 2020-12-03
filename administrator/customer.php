@@ -305,6 +305,7 @@
             <th style="width: 130px;">ແຂວງ</th>
             <th style="width: 100px;">ປະເພດຜູ້ໃຊ້ໄຟ</th>
             <th style="width: 300px;">ບ່ອນສົ່ງໃບເກັບເງິນ</th>
+
         </tr>
         <?php
           $obj->select_cus('%%');

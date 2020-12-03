@@ -199,7 +199,7 @@
                             <a href="../administrator/bill" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                ຈັດການຂໍ້ມູນໃບບິນ
+                                ຈັດການແຈ້ງຄ່າໄຟຟ້າ
                                 </p>
                             </a>
                             
