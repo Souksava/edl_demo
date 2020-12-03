@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            <form action="export.php" id="formadd" method="POST">
+            <form action="export" id="formadd" method="POST">
                 <div class="input-group">        
                     <input type="text" name="meter"  placeholder="ເລກໝໍ້ໄຟ" class="form-control" autofocus>
                     <input type="text" name="no_current" placeholder="ເລກຄັ້ງນີ້" class="form-control">
@@ -62,7 +62,7 @@
                              <div class="card-body">
                                  <h5 align="center" class="card-title"></h5>
                                  <p class="card-text">
-                                     <form action="export.php" id="form1" method="POST">
+                                     <form action="export" id="form1" method="POST">
                                          <div class="row">
                                              <div class="col-md-12">
                                                  ເລກທີບິນ: 1
@@ -118,7 +118,7 @@
      </div>
   </div>
 
-  <form action="bill.php" id="formDelete" method="POST" enctype="multipart/form-data">
+  <form action="bill" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

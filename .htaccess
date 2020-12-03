@@ -5,6 +5,7 @@ RewriteRule ^administrator/customer?$ administrator/customer.php
 RewriteRule ^administrator/bill?$ administrator/bill.php
 
 RewriteRule ^administrator/Main?$ administrator/Main.php
+RewriteRule ^administrator/export?$ administrator/export.php
 
 
 RewriteRule ^administrator/login?$ administrator/index.php
