@@ -157,9 +157,7 @@
                 $('#brand_id_update').val(data[5]);
                 $('#qtyalert_update').val(data[6]);
                 document.getElementById("output2").src = (data[7]);
-          });
-
-          
+          });        
 // update product address
               $('.btnUpdate_addr').on('click', function(){
               $('#exampleModalUpdate').modal('show');

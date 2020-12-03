@@ -57,7 +57,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?php echo $path; ?>Main.php" class="nav-link"><?php echo $title; ?></a>
+                    <a href="<?php echo $path; ?>Main" class="nav-link"><?php echo $title; ?></a>
                 </li>
             </ul>
 
@@ -146,7 +146,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4 font14">
             <!-- Brand Logo -->
-            <a href="Main.php" class="brand-link">
+            <a href="Main" class="brand-link">
                 <img src="<?php echo $path ?>image/edl_logo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">EDL</span>

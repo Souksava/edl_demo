@@ -16,7 +16,11 @@
 
     <div class="row">
         <div class="col-md-8">
+<<<<<<< HEAD
             <form action="bill" id="formadd" method="POST">
+=======
+            <form action="export" id="formadd" method="POST">
+>>>>>>> ed14fa59cf2369aaf998bdba6d9744b0673aef3d
                 <div class="input-group">        
                     <input type="text" name="meter" placeholder="ເລກໝໍ້ໄຟ" class="form-control" autofocus>
                     <input type="text" name="no_after" placeholder="ເລກຄັ້ງນີ້" class="form-control">
@@ -144,7 +148,11 @@
   </div>
 
   <form action="bill" id="formDelete" method="POST" enctype="multipart/form-data">
+<<<<<<< HEAD
     <div class="modal fade" id="exampleModalDeletebill" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+=======
+    <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+>>>>>>> ed14fa59cf2369aaf998bdba6d9744b0673aef3d
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
