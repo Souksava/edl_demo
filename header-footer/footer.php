@@ -130,11 +130,27 @@
                 $('#cus_id_update').val(data[0]);
                 $('#cus_name_update').val(data[1]);
                 $('#cus_surname_update').val(data[2]);
-                $('#cus_gender').val(data[3]);
+                $('#cus_gender_update').val(data[3]);
                 $('#cus_addr_update').val(data[4]);
                 $('#province_update').val(data[5]);
                 $('#cus_type_update').val(data[7]);
                 $('#cus_send_update').val(data[8]);
+          });
+// update customer
+          $('.btnUpdate_bill').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#bill_id_update').val(data[0]);
+                $('#meter_update').val(data[1]);
+                $('#no_current_update').val(data[2]);
+                $('#no_before_update').val(data[3]);
+                $('#cus_id_update').val(data[4]);
           });
 
           // update category
