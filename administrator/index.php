@@ -1,3 +1,9 @@
+<?php
+  include ("../oop/obj.php");
+if(isset($_POST['btnlogin'])){
+  $obj->login($_POST['email'],$_POST['pass']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +16,26 @@
   <link rel="stylesheet" href="../dist/css/alt/style2.css">
   <link rel="stylesheet" href="../dist/css/alt/style.css">
   <link rel="stylesheet" href="../fontawesome/css/all.css">
+  <script src="../dist/js/sweetalert.min.js"></script>
 </head>
 
 <body>
     <div class="container">
       <div class="forms-container">
           <div class="signin-signup">
-              <form action="Main.php" class="sign-in-form">
+              <form action="login" method="post" id="form1" class="sign-in-form">
                 <img src="../image/edl_logo.png" alt="" width="100px"><br>
                 <h2 class="title">ເຂົ້າສູ່ລະບົບ</h2>
                   <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" placeholder="ອີເມວຜູ້ໃຊ້">
+                    <input type="email" name="email" placeholder="ອີເມວຜູ້ໃຊ້">
                   </div>
                   <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="ລະຫັດຜ່ານ">
+                    <input type="password" name="pass" placeholder="ລະຫັດຜ່ານ">
                   </div>
-                  <input type="submit" class="btn solid" value="ເຂົ້າສູ່ລະບົບ">
+                  <button type="submit" name="btnlogin" class="btn solid" >ເຂົ້າສູ່ລະບົບ</button>
+              
 
                   <p class="social-text">ຫຼືທ່ານຕ້ອງການເຂົ້າສູ່ລະບົບດ້ວຍບັນຊີອື່ນ</p>
                   <div class="social-media">
@@ -98,6 +106,28 @@
             </div>
       </div>
     </div>
+    <?php
+        if(isset($_GET['email'])=='null'){
+          echo'<script type="text/javascript">
+          swal("", "ກະລຸນາປ້ອນອີເມວ !!", "info");
+          </script>';
+        }
+        if(isset($_GET['pass'])=='null'){
+          echo'<script type="text/javascript">
+          swal("", "ກະລຸນາປ້ອນລະຫັດຜ່ານ !!", "info");
+          </script>';
+        }
+        if(isset($_GET['login'])=='false'){
+          echo'<script type="text/javascript">
+          swal("", "ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ !!", "error");
+          </script>';
+        }
+        if(isset($_GET['permission'])=='found'){
+          echo'<script type="text/javascript">
+          swal("", "ທ່ານບໍ່ມີສິດເຂົ້າໃຊ້ລະບົບ !!", "error");
+          </script>';
+        }
+    ?>
     <script src="dist/js/app.js"></script>
 </body>
 </html>
