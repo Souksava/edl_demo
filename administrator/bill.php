@@ -16,11 +16,7 @@
 
     <div class="row">
         <div class="col-md-8">
-<<<<<<< HEAD
             <form action="bill" id="formadd" method="POST">
-=======
-            <form action="export" id="formadd" method="POST">
->>>>>>> ed14fa59cf2369aaf998bdba6d9744b0673aef3d
                 <div class="input-group">        
                     <input type="text" name="meter" placeholder="ເລກໝໍ້ໄຟ" class="form-control" autofocus>
                     <input type="text" name="no_after" placeholder="ເລກຄັ້ງນີ້" class="form-control">
@@ -100,14 +96,14 @@
                                             </div>
                                             <div class="col-md-12 form-control2">
                                                 <label>ຄ່າໄຟຟ້າປະຈຳເດືອນ</label>
-                                                <input type="month" name="monthly" id="" placeholder="ລະຫັດລູກຄ້າ">
+                                                <input type="date" name="monthly" id="" placeholder="ລະຫັດລູກຄ້າ">
                                                 <i class="fas fa-check-circle "></i>
                                                 <i class="fas fa-exclamation-circle "></i>
                                                 <small class="">Error message</small>
                                             </div>
                                             <div class="col-md-12 form-control2">
                                                 <label>ວັນທີລົງບັນຊີ</label>
-                                                <input type="month" name="sell_date" id="" placeholder="ລະຫັດລູກຄ້າ">
+                                                <input type="date" name="sell_date" id="" placeholder="ລະຫັດລູກຄ້າ">
                                                 <i class="fas fa-check-circle "></i>
                                                 <i class="fas fa-exclamation-circle "></i>
                                                 <small class="">Error message</small>
@@ -129,7 +125,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                                                                    <button type="submit" name="btnSave" class="btn btn-outline-success">ດຳເນີນການ</button>
+                                                                    <button type="submit" name="btnCon" class="btn btn-outline-success">ດຳເນີນການ</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -148,11 +144,7 @@
   </div>
 
   <form action="bill" id="formDelete" method="POST" enctype="multipart/form-data">
-<<<<<<< HEAD
     <div class="modal fade" id="exampleModalDeletebill" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-=======
-    <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
->>>>>>> ed14fa59cf2369aaf998bdba6d9744b0673aef3d
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
