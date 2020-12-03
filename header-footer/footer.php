@@ -49,74 +49,9 @@
 <script src="<?php echo $path ?>dist/js/style.js"></script>
 <script type="text/javascript">
       $(document).ready(function(){
-          // Update Modal
-          $('.btnUpdate_auther').on('click', function(){
-              $('#exampleModalUpdate').modal('show');
-                $tr = $(this).closest('tr');
-                var data = $tr.children("td").map(function() {
-                  return $(this).text();
-                }).get();
+         
 
-                console.log(data); 
 
-                $('#auther_id2').val(data[0]);
-                $('#auther_name2').val(data[1]);
-
-          });
-// update employee
-          $('.btnUpdate_emp').on('click', function(){
-              $('#exampleModalUpdate').modal('show');
-                $tr = $(this).closest('tr');
-                var data = $tr.children("td").map(function() {
-                  return $(this).text();
-                }).get();
-
-                console.log(data); 
-
-                $('#emp_id2').val(data[0]);
-                $('#emp_name2').val(data[1]);
-                $('#emp_surname2').val(data[2]);
-                $('#gender2').val(data[3]);
-                $('#tel2').val(data[4]);
-                $('#address2').val(data[5]);
-                $('#auther_id2').val(data[6]);
-                $('#email2').val(data[8]);
-                $('#password2').val(data[9]);
-                $('#password_cf2').val(data[9]);
-                $('#status2').val(data[10]);
-                document.getElementById("output2").src = (data[12]);
-          });
-// update supplier
-          $('.btnUpdate_sup').on('click', function(){
-              $('#exampleModalUpdate').modal('show');
-                $tr = $(this).closest('tr');
-                var data = $tr.children("td").map(function() {
-                  return $(this).text();
-                }).get();
-
-                console.log(data); 
-
-                $('#sup_id_update').val(data[0]);
-                $('#company_update').val(data[1]);
-                $('#tel_update').val(data[2]);
-                $('#fax_update').val(data[3]);
-                $('#address_update').val(data[4]);
-                $('#email_update').val(data[5]);
-                document.getElementById("output2").src = (data[6]);
-          });
-// update customer status
-          $('.btnUpdate_customer_status').on('click', function(){
-              $('#exampleModalUpdate').modal('show');
-                $tr = $(this).closest('tr');
-                var data = $tr.children("td").map(function() {
-                  return $(this).text();
-                }).get();
-
-                console.log(data); 
-
-                $('#stt_id_update').val(data[0]);
-                $('#stt_name_update').val(data[1]);
-          });
 // update customer
           $('.btnUpdate_customer').on('click', function(){
               $('#exampleModalUpdate').modal('show');
@@ -139,6 +74,17 @@
           });
           $('.btnDelete_customer').on('click', function(){
               $('#exampleModalDelete').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#id').val(data[1]);
+          });
+          $('.btnDelete_bill').on('click', function(){
+              $('#exampleModalDeletebill').modal('show');
                 $tr = $(this).closest('tr');
                 var data = $tr.children("td").map(function() {
                   return $(this).text();

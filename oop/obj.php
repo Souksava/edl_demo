@@ -124,6 +124,39 @@ class obj{
             }
         }
     }
+    public static function add_list($meter,$no_after,$no_before){
+        global $conn;
+        $result = mysqli_query($conn,"insert into listselldetail(meter,no_after,no_before) values('$meter','$no_after','$no_before')");
+        if(!$result){
+            echo"<script>";
+            echo"window.location.href='bill';";
+            echo"</script>";
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='bill';";
+            echo"</script>";
+        }
+    }
+    public static function listselldetail(){
+        global $conn;
+        global $result_list;
+        $result_list = mysqli_query($conn,"select * from listselldetail order by id asc");
+    }
+    public static function del_list($id){
+        global $conn;
+        $result = mysqli_query($conn,"delete from listselldetail where id='$id'");
+        echo"<script>";
+        echo"window.location.href='bill';";
+        echo"</script>";
+    }
+    public static function billno(){
+        global $conn;
+        global $billno;
+        $result = mysqli_query($conn,"select max(billno) as billno from sell");
+        $billno = mysqli_fetch_array($result,MYSQLI_ASSOC);
+        $billno = $billno['billno'] + 1;
+    }
 }
 $obj = new obj();
 // $obj->cookie_stock('1','2','3','4');
