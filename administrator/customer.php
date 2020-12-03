@@ -4,13 +4,64 @@
   $links = "../";
   $session_path = "../";
   include ("../header-footer/header.php");
+  include ("../oop/obj.php");
+?>
+<?php
+        if(isset($_GET['save'])=='fail'){
+          echo'<script type="text/javascript">
+          swal("", "ບໍ່ສາມາດບັນທຶກຂໍ້ມູນໄດ້ !!", "error");
+          </script>';
+        }
+
+        if(isset($_GET['save2'])=='success'){
+          echo'<script type="text/javascript">
+          swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ !!", "success");
+          </script>';
+        }
+        if(isset($_GET['update'])=='fail'){
+          echo'<script type="text/javascript">
+          swal("", "ແກ້ໄຂຂໍ້ມູນບໍ່ສຳເລັດ !!", "error");
+          </script>';
+        }
+        if(isset($_GET['update2'])=='success'){
+          echo'<script type="text/javascript">
+          swal("", "ແກ້ໄຂຂໍ້ມູນສຳເລັດ !!", "success");
+          </script>';
+        }
+        if(isset($_GET['delete'])=='fail'){
+          echo'<script type="text/javascript">
+          swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດລຸກຄ້າໄດ້ໝູນໃຊ້ແລ້ວ !!", "error");
+          </script>';
+        }
+
+        if(isset($_GET['del'])=='fail'){
+          echo'<script type="text/javascript">
+          swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ !!", "error");
+          </script>';
+        }
+        if(isset($_GET['del2'])=='fail'){
+          echo'<script type="text/javascript">
+          swal("", "ລົບຂໍ້ມູນສຳເລັດ !!", "success");
+          </script>';
+        }
+        if(isset($_POST['Save'])){
+          $obj->insert_cus($_POST['cus_id'],$_POST['cus_name'],$_POST['cus_surname'],$_POST['cus_tel'],$_POST['cus_addr'],$_POST['province'],$_POST['cus_type'],$_POST['cus_gender'],$_POST['cus_send'],$_POST['cus_no']);
+        }
+        if(isset($_POST['btnUpdate'])){
+          $obj->update_cus($_POST['cus_id_update'],$_POST['cus_name_update'],$_POST['cus_surname_update'],$_POST['cus_tel_update'],$_POST['cus_addr_update'],$_POST['province_update'],$_POST['cus_type_update'],$_POST['cus_gender_update'],$_POST['cus_send_update'],$_POST['cus_no_update']);
+        }
+        if(isset($_POST['btnDelete'])){
+          $obj->delete_cus($_POST['id']);
+        }
+        
+
 ?>
     <div style="width: 100%;">
         <div style="width: 48%; float: left;">
           <b><?php echo $title    ?></b>&nbsp <img src="../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
-          <form action="customer.php" id="form1" method="POST" enctype="multipart/form-data">
+          <form action="customer" id="formsave" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalcustomer">
                 <img src="../icon/add.ico" alt="" width="25px">
             </a>
@@ -28,6 +79,13 @@
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ລະຫັດລູກຄ້າ</label>
                                       <input type="text" name="cus_id" id="cus_id" placeholder="ລະຫັດລູກຄ້າ">
+                                      <i class="fas fa-check-circle "></i>
+                                      <i class="fas fa-exclamation-circle "></i>
+                                      <small class="">Error message</small>
+                                  </div>
+                                  <div class="col-md-12 col-sm-6 form-control2">
+                                      <label>ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ</label>
+                                      <input type="text" name="cus_no" id="cus_no" placeholder="ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -61,12 +119,24 @@
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
+                                      <label>ເບີໂທ</label>
+                                      <input type="text" name="cus_tel" id="cus_tel" placeholder="ເບີໂທ">
+                                      <i class="fas fa-check-circle "></i>
+                                      <i class="fas fa-exclamation-circle "></i>
+                                      <small class="">Error message</small>
+                                  </div>
+                                  <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ແຂວງ</label>
                                     <select name="province" id="province" >
                                       <option value="">--- ເລືອກແຂວງ ---</option>
-                                      <option value="0001">ຜູ້ເບີກສິນຄ້າ</option>
-                                      <option value="0002">ຜູ້ອະນຸມັດ</option>
-                                      <option value="0003">ຜູ້ເບີກຈ່າຍ</option>
+                                      <?php 
+                                        $obj->province();
+                                        foreach($result_pro as $pro2){
+                                        ?>
+                                        <option value="<?php echo $pro2['pro_id'] ?>"><?php echo $pro2['pro_name'] ?></option>
+                                        <?php
+                                        }
+                                      ?>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -76,9 +146,14 @@
                                     <label>ປະເພດຜູ້ໃຊ້ໄຟ</label>
                                     <select name="cus_type" id="cus_type" >
                                       <option value="">--- ເລືອກປະເພດຜູ້ໃຊ້ໄຟ ---</option>
-                                      <option value="0001">ຜູ້ເບີກສິນຄ້າ</option>
-                                      <option value="0002">ຜູ້ອະນຸມັດ</option>
-                                      <option value="0003">ຜູ້ເບີກຈ່າຍ</option>
+                                      <?php 
+                                        $obj->category();
+                                        foreach($result_cate as $cate2){
+                                        ?>
+                                        <option value="<?php echo $cate2['cate_id'] ?>"><?php echo $cate2['cate_name'] ?></option>
+                                        <?php
+                                        }
+                                      ?>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -102,7 +177,7 @@
               </div>
           </form>
 
-          <form action="customer.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+          <form action="customer" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -114,9 +189,16 @@
                           </div>
                           <div class="modal-body">
                               <div class="row" align="left">
-                              <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດລູກຄ້າ</label>
-                                      <input type="text" name="cus_id_update" id="cus_id_update" placeholder="ລະຫັດລູກຄ້າ">
+                                <!-- <div class="col-md-12 col-sm-6 form-control2">
+                                      <label>ລະຫັດລູກຄ້າ</label> -->
+                                      <input type="hidden" name="cus_id_update" id="cus_id_update" placeholder="ລະຫັດລູກຄ້າ">
+                                      <!-- <i class="fas fa-check-circle "></i>
+                                      <i class="fas fa-exclamation-circle "></i>
+                                      <small class="">Error message</small>
+                                  </div> -->
+                                  <div class="col-md-12 col-sm-6 form-control2">
+                                      <label>ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ</label>
+                                      <input type="text" name="cus_no_update" id="cus_no_update" placeholder="ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -150,12 +232,23 @@
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
+                                      <label>ເບີໂທ</label>
+                                      <input type="text" name="cus_tel_update" id="cus_tel_update" placeholder="ເບີໂທ">
+                                      <i class="fas fa-check-circle "></i>
+                                      <i class="fas fa-exclamation-circle "></i>
+                                      <small class="">Error message</small>
+                                  </div>
+                                  <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ແຂວງ</label>
                                     <select name="province_update" id="province_update" >
                                       <option value="">--- ເລືອກແຂວງ ---</option>
-                                      <option value="1">ຜູ້ເບີກສິນຄ້າ</option>
-                                      <option value="2">ຜູ້ອະນຸມັດ</option>
-                                      <option value="3">ຜູ້ເບີກຈ່າຍ</option>
+                                      <?php 
+                                        foreach($result_pro as $pro){
+                                        ?>
+                                        <option value="<?php echo $pro['pro_id'] ?>"><?php echo $pro['pro_name'] ?></option>
+                                        <?php
+                                        }
+                                      ?>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -164,10 +257,14 @@
                                   <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ປະເພດຜູ້ໃຊ້ໄຟ</label>
                                     <select name="cus_type_update" id="cus_type_update" >
-                                      <option value="">--- ເລືອກແຂວງ ---</option>
-                                      <option value="1">ຜູ້ເບີກສິນຄ້າ</option>
-                                      <option value="2">ຜູ້ອະນຸມັດ</option>
-                                      <option value="3">ຜູ້ເບີກຈ່າຍ</option>
+                                      <option value="">--- ເລືອກປະເພດຜູ້ໃຊ້ໄຟ ---</option>
+                                      <?php 
+                                        foreach($result_cate as $cate){
+                                        ?>
+                                        <option value="<?php echo $cate['cate_id'] ?>"><?php echo $cate['cate_name'] ?></option>
+                                        <?php
+                                        }
+                                      ?>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -195,34 +292,48 @@
     
     <div class="clearfix"></div><br>
     <div class="table-responsive">
-      <table class="table font12" style="width: 1500px;">
+      <table class="table font12" style="width: 1800px;">
         <tr>
-            <th>ລະຫັດລູກຄ້າ</th>
-            <th>ຊື່</th>
-            <th>ນາມສະກຸນ</th>
-            <th>ເພດ</th>
-            <th>ທີ່ຢູ່</th>
-            <th>ແຂວງ</th>
-            <th>ປະເພດຜູ້ໃຊ້ໄຟ</th>
-            <th>ບ່ອນສົ່ງໃບເກັບເງິນ</th>
-            <th></th>
+            <th style="width: 30px;">ລຳດັບ</th>
+            <th style="width: 100px;">ລະຫັດລູກຄ້າ</th>
+            <th style="width: 130px;">ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ</th>
+            <th style="width: 120px;">ຊື່</th>
+            <th style="width: 120px;">ນາມສະກຸນ</th>
+            <th style="width: 50px;">ເພດ</th>
+            <th style="width: 300px;">ທີ່ຢູ່</th>
+            <th style="width: 60px;">ເບີໂທ</th>
+            <th style="width: 130px;">ແຂວງ</th>
+            <th style="width: 100px;">ປະເພດຜູ້ໃຊ້ໄຟ</th>
+            <th style="width: 300px;">ບ່ອນສົ່ງໃບເກັບເງິນ</th>
+
         </tr>
+        <?php
+          $obj->select_cus('%%');
+          $no_ = 0;
+          foreach($result_cus as $row ){
+        ?>
         <tr>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td style="display:none;">1</td>
-            <td>c</td>
-            <td style="display:none;">1</td>
-            <td>1</td>
-            <td>c</td>
+            <td><?php echo $no_ += 1;; ?></td>
+            <td><?php echo $row['cus_id']; ?></td>
+            <td><?php echo $row['cus_no']; ?></td>
+            <td><?php echo $row['cus_name']; ?></td>
+            <td><?php echo $row['cus_surname']; ?></td>
+            <td><?php echo $row['gender']; ?></td>
+            <td><?php echo $row['address']; ?></td>
+            <td><?php echo $row['tel']; ?></td>
+            <td style="display:none;"><?php echo $row['pro_id']; ?></td>
+            <td><?php echo $row['pro_name']; ?></td>
+            <td style="display:none;"><?php echo $row['cate_id']; ?></td>
+            <td><?php echo $row['cate_name']; ?></td>
+            <td><?php echo $row['delivery']; ?></td>
             <td>
             <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_customer"></a>&nbsp; &nbsp; 
               <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_customer"></a>
             </td>
         </tr>
+        <?php
+          }
+        ?>
       </table>
     </div>
 
@@ -239,7 +350,7 @@
 
   </div>
 
-  <form action="customer.php" id="formDelete" method="POST" enctype="multipart/form-data">
+  <form action="customer" id="formDelete" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">

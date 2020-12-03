@@ -126,15 +126,27 @@
                 }).get();
 
                 console.log(data); 
+                $('#cus_id_update').val(data[1]);
+                $('#cus_no_update').val(data[2]);
+                $('#cus_name_update').val(data[3]);
+                $('#cus_surname_update').val(data[4]);
+                $('#cus_gender_update').val(data[5]);
+                $('#cus_addr_update').val(data[6]);
+                $('#cus_tel_update').val(data[7]);
+                $('#province_update').val(data[8]);
+                $('#cus_type_update').val(data[10]);
+                $('#cus_send_update').val(data[12]);
+          });
+          $('.btnDelete_customer').on('click', function(){
+              $('#exampleModalDelete').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
 
-                $('#cus_id_update').val(data[0]);
-                $('#cus_name_update').val(data[1]);
-                $('#cus_surname_update').val(data[2]);
-                $('#cus_gender_update').val(data[3]);
-                $('#cus_addr_update').val(data[4]);
-                $('#province_update').val(data[5]);
-                $('#cus_type_update').val(data[7]);
-                $('#cus_send_update').val(data[8]);
+                console.log(data); 
+
+                $('#id').val(data[1]);
           });
 // update customer
           $('.btnUpdate_bill').on('click', function(){
