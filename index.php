@@ -291,7 +291,6 @@ body{
                         <div class="col-12">
                             <div class="row no-gutters">
                                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-<<<<<<< HEAD
                                     <select class="form-control" id="exampleFormControlSelect1" name="province">
                                         <option value="" disabled selected>-----ເລືອກແຂວງ-----</option>
                                         <?php 
@@ -302,18 +301,7 @@ body{
                                         <?php
                                         }
                                       ?>
-=======
-                                    <select class="form-control" name="pro_id" id="exampleFormControlSelect1">
-                                        <option value="">Location</option>
-                                        <?php 
-                                          $obj->province();
-                                          foreach($result_pro as $pro){
-                                        ?>
-                                        <option value="<?php echo $pro['pro_id'] ?>"><?php echo $pro['pro_name'] ?></option>
-                                        <?php
-                                          }
-                                        ?>
->>>>>>> fe966eee327fe30c88780a6f38221255d6e2da4b
+
                                     </select>
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-sm-12 p-0">
