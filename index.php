@@ -276,7 +276,7 @@ body{
 }
 </style>
 
-
+<form action="" method="post">
 <div class="container">
 <div class="row">
     <div class="col-lg-12 card-margin">
@@ -287,18 +287,30 @@ body{
                         <div class="col-12">
                             <div class="row no-gutters">
                                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>Location</option>
-                                        <option>London</option>
-                                        <option>Boston</option>
-                                        <option>Mumbai</option>
-                                        <option>New York</option>
-                                        <option>Toronto</option>
-                                        <option>Paris</option>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="province">
+                                        <option value="" disabled selected>-----ເລືອກແຂວງ-----</option>
+                                        <option value="ນະຄອນຫຼວງວຽງຈັນ">ນະຄອນຫຼວງວຽງຈັນ</option>
+                                        <option value="ອັດຕະປື">ອັດຕະປື</option>
+                                        <option value="ບໍ່ແກ້ວ">ບໍ່ແກ້ວ</option>
+                                        <option value="ບໍລິຄຳໄຊ">ບໍລິຄຳໄຊ</option>
+                                        <option value="ຈຳປະສັກ">ຈຳປະສັກ</option>
+                                        <option value="ຫົວພັນ">ຫົວພັນ</option>
+                                        <option value="ຄຳມ່ວນ">ຄຳມ່ວນ</option>
+                                        <option value="ຫຼອງນ້ຳທາ">ຫຼອງນ້ຳທາ</option>
+                                        <option value="ຫຼວງພະບາງ">ຫຼວງພະບາງ</option>
+                                        <option value="ອຸດົມໄຊ">ອຸດົມໄຊ</option>
+                                        <option value="ຜົ້ງສາລີ">ຜົ້ງສາລີ</option>
+                                        <option value="ສາລະວັນ">ສາລະວັນ</option>
+                                        <option value="ສະຫວັນນະເຂດ">ສະຫວັນນະເຂດ</option>
+                                        <option value="ເຊກອງ">ເຊກອງ</option>
+                                        <option value="ແຂວງວຽງຈັນ">ແຂວງວຽງຈັນ</option>
+                                        <option value="ໄຊຍະບູລີ">ໄຊຍະບູລີ</option>
+                                        <option value="ໄຊສົມບູນ">ໄຊສົມບູນ</option>
+                                        <option value="ຊຽງຂວາງ">ຊຽງຂວາງ</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-sm-12 p-0">
-                                    <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+                                    <input type="text" placeholder="ກະລູນາປ້ອນເລກບັນຊີຜູ້ໃຊ້ໄຟ" class="form-control" id="search" name="search">
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-12 p-0">
                                     <button type="submit" class="btn btn-base">
@@ -313,6 +325,7 @@ body{
         </div>
     </div>
 </div>
+</form>
 <div class="row">
         <div class="col-12">
             <div class="card card-margin">
@@ -322,9 +335,7 @@ body{
                             <div class="search-result">
                                 <div class="result-header">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="records">Showing: result</div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="result-body">
@@ -373,6 +384,8 @@ body{
                             </div>
                         </div>
                     </div>
+                    
+
                     <nav class="d-flex justify-content-center">
                         <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
                             <li class="page-item">
@@ -393,10 +406,15 @@ body{
                             </li>
                         </ul>
                     </nav>
+
+
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>
