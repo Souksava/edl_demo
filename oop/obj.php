@@ -35,7 +35,7 @@ class obj{
                      $resultget = mysqli_query($conn, $sql);
                      
                      if(mysqli_num_rows($resultget) <= 0){
-                         echo"<meta http-equiv-'refress' content='1;URL=login'>";
+                         echo"<meta http-equiv-'refresh' content='1;URL=login'>";
                      }
                      else{
                         

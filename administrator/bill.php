@@ -12,6 +12,8 @@
   if(isset($_POST['btnDelete'])){
       $obj->del_list($_POST['id']);
   }
+  $obj->sumlist();
+
 ?>
 
     <div class="row">
@@ -68,7 +70,17 @@
                          ລວມພະລັງງານໃນເດືອນ
                      </div>
                      <div class="col-md-12">
-                         <br><h4 style="color: #CE3131;">244</h4> 
+                         <br><h4 style="color: #CE3131;">
+                         <?php 
+                            if(mysqli_num_rows($result_sumlist) > 0){
+                                $sum_list = mysqli_fetch_array($result_sumlist,MYSQLI_ASSOC);
+                                echo $sum_list['amount'];
+                            }
+                            else{
+                                echo '0';
+                            }
+                        ?>
+                        </h4> 
                      </div>
                  </div>
              </div>

@@ -289,24 +289,14 @@ body{
                                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                     <select class="form-control" id="exampleFormControlSelect1" name="province">
                                         <option value="" disabled selected>-----ເລືອກແຂວງ-----</option>
-                                        <option value="ນະຄອນຫຼວງວຽງຈັນ">ນະຄອນຫຼວງວຽງຈັນ</option>
-                                        <option value="ອັດຕະປື">ອັດຕະປື</option>
-                                        <option value="ບໍ່ແກ້ວ">ບໍ່ແກ້ວ</option>
-                                        <option value="ບໍລິຄຳໄຊ">ບໍລິຄຳໄຊ</option>
-                                        <option value="ຈຳປະສັກ">ຈຳປະສັກ</option>
-                                        <option value="ຫົວພັນ">ຫົວພັນ</option>
-                                        <option value="ຄຳມ່ວນ">ຄຳມ່ວນ</option>
-                                        <option value="ຫຼອງນ້ຳທາ">ຫຼອງນ້ຳທາ</option>
-                                        <option value="ຫຼວງພະບາງ">ຫຼວງພະບາງ</option>
-                                        <option value="ອຸດົມໄຊ">ອຸດົມໄຊ</option>
-                                        <option value="ຜົ້ງສາລີ">ຜົ້ງສາລີ</option>
-                                        <option value="ສາລະວັນ">ສາລະວັນ</option>
-                                        <option value="ສະຫວັນນະເຂດ">ສະຫວັນນະເຂດ</option>
-                                        <option value="ເຊກອງ">ເຊກອງ</option>
-                                        <option value="ແຂວງວຽງຈັນ">ແຂວງວຽງຈັນ</option>
-                                        <option value="ໄຊຍະບູລີ">ໄຊຍະບູລີ</option>
-                                        <option value="ໄຊສົມບູນ">ໄຊສົມບູນ</option>
-                                        <option value="ຊຽງຂວາງ">ຊຽງຂວາງ</option>
+                                        <?php 
+                                        $obj->province();
+                                        foreach($result_pro as $pro2){
+                                        ?>
+                                        <option value="<?php echo $pro2['pro_id'] ?>"><?php echo $pro2['pro_name'] ?></option>
+                                        <?php
+                                        }
+                                      ?>
                                     </select>
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-sm-12 p-0">

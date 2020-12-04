@@ -9,7 +9,7 @@
 //     else{
 
 //     }
-       require ''.$path.'ConnectDB/connectDB.php';
+      //  require ''.$path.'ConnectDB/connectDB.php';
       ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <link rel="icon" href="<?php echo $path; ?>image/edl_logo.png">
     <title><?php echo $title; ?></title>
     <!-- Tell the browser to be responsive to screen width -->

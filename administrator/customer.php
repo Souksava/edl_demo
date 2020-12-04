@@ -128,7 +128,7 @@
                                   <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ແຂວງ</label>
                                     <select name="province" id="province" >
-                                      <option value="">--- ເລືອກແຂວງ ---</option>
+                                      <option value="" disabled selected>--- ເລືອກແຂວງ ---</option>
                                       <?php 
                                         $obj->province();
                                         foreach($result_pro as $pro2){

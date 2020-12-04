@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 03, 2020 at 12:58 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.13
+-- Host: 127.0.0.1
+-- Generation Time: Dec 04, 2020 at 03:48 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -67,6 +66,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cus_id`, `cus_name`, `cus_surname`, `tel`, `address`, `pro_id`, `cate_id`, `gender`, `delivery`, `cus_no`) VALUES
+('0002 1772', 'ບຸນເພັງ', 'ບຸນ', '02054187448', 'ໂນນແກ້ວ, 0237, ມ ຂ0202, ມ.ສີໂຄດຕະບອງ, ນະຄອນຫຼອງວຽງຈັນ', 1, 1, 'ຊາຍ', 'ບ ໂນນແກ້ວ,ມ ສ/ຄ 0202070237', '0021 772'),
 ('0018 9622', 'ນວນທອງ', 'ສຸລະວະດີ', '0302080312', 'ບ້ານທົ່ງພານທອງ, 1, ມ. 0302, ມ.ສີສັດຕະນາກ, ນະຄອນຫູວງວຽງຈັນ', 1, 1, 'ຊາຍ', 'ບ້ານທົ່ງພານທອງ, ເຮືອນເລກທີ 001, ຊັ້ນເຮືອນ 1, ມ. 0302, ເມືອງ ສີສັດຕະນາກ, ນະຄອນຫຼວງວຽງຈັນ', '0188 939');
 
 -- --------------------------------------------------------
@@ -81,6 +81,13 @@ CREATE TABLE `listselldetail` (
   `no_before` int(11) NOT NULL,
   `no_after` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `listselldetail`
+--
+
+INSERT INTO `listselldetail` (`id`, `meter`, `no_before`, `no_after`) VALUES
+(10, '16616315', 0, 244);
 
 -- --------------------------------------------------------
 
@@ -102,7 +109,20 @@ INSERT INTO `province` (`pro_id`, `pro_name`) VALUES
 (2, 'ແຂວງວຽງຈັນ'),
 (3, 'ແຂວງຫຼວງພະບາງ'),
 (4, 'ແຂວງຈຳປາສັກ'),
-(5, 'ແຂວງຜົ້ງສາລີ');
+(5, 'ແຂວງຜົ້ງສາລີ'),
+(6, 'ອັດຕະປື'),
+(7, 'ບໍ່ແກ້ວ'),
+(8, 'ບໍລິຄຳໄຊ'),
+(9, 'ຫົວພັນ'),
+(10, 'ຄຳມ່ວນ'),
+(11, 'ຫຼວງນ້ຳທາ'),
+(12, 'ອຸດົມໄຊ'),
+(13, 'ສາລະວັນ'),
+(14, 'ສະຫວັນນະເຂດ'),
+(15, 'ເຊກອງ'),
+(16, 'ໄຊຍະບູລີ'),
+(17, 'ໄຊສົມບູນ'),
+(18, 'ຊຽງຂວາງ');
 
 -- --------------------------------------------------------
 
@@ -238,13 +258,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `listselldetail`
 --
 ALTER TABLE `listselldetail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `province`
 --
 ALTER TABLE `province`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `selldetail`
