@@ -189,6 +189,23 @@ class obj{
             }
         }
     }
+    public static function search($pro_id,$s){
+        global $conn;
+        global $search1;
+        $search1 = mysqli_query($conn,"select c.cus_id,billno,cus_name,cus_surname,gender,tel,address,delivery,cus_no,cate_name,total_qty,amount,sell_date,sell_time,monthly from customer c left join sell s on c.cus_id=s.cus_id left join province p on c.pro_id=p.pro_id left join category d on c.cate_id=d.cate_id where s.cus_id = '$s' or c.pro_id='$pro_id' or cus_no='$s' or cus_name='$s' or cus_surname='$s' or gender='$s' or billno='$s' or monthly='$s' or cate_name='$s'");
+    }
+    public static function searchdetail($billno){
+        global $conn;
+        global $result;
+        global $arr_result;
+        global $amount;
+        $result1 = mysqli_query($conn,"select billno,s.cus_id,cus_name,cus_surname,tel,address,cus_no,delivery,cate_name,sell_date,monthly from sell s left join customer c on s.cus_id=c.cus_id left join category d on c.cate_id=d.cate_id where billno='$billno'");
+        $arr_result = mysqli_fetch_array($result1,MYSQLI_ASSOC);
+        $result = mysqli_query($conn,"select meter,no_before,no_after,total from selldetail d left join sell s on d.billno=s.billno where d.billno='$billno'");
+        $result_amount = mysqli_query($conn,"select total_qty,amount from sell where billno='$billno'");
+        $amount = mysqli_fetch_array($result_amount,MYSQLI_ASSOC);
+        
+    }
 }
 $obj = new obj();
 // $obj->cookie_stock('1','2','3','4');

@@ -1,5 +1,9 @@
 <?php
 $path = "../";
+include ("oop/obj.php");
+if(isset($_POST['search'])){
+  $obj->search(trim($_POST['pro_id']),trim($_POST['search']));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -282,11 +286,12 @@ body{
     <div class="col-lg-12 card-margin">
         <div class="card search-form">
             <div class="card-body p-0">
-                <form id="search-form">
+                <form action="edl_demo" method="POST" id="search-form">
                     <div class="row">
                         <div class="col-12">
                             <div class="row no-gutters">
                                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+<<<<<<< HEAD
                                     <select class="form-control" id="exampleFormControlSelect1" name="province">
                                         <option value="" disabled selected>-----ເລືອກແຂວງ-----</option>
                                         <?php 
@@ -297,13 +302,25 @@ body{
                                         <?php
                                         }
                                       ?>
+=======
+                                    <select class="form-control" name="pro_id" id="exampleFormControlSelect1">
+                                        <option value="">Location</option>
+                                        <?php 
+                                          $obj->province();
+                                          foreach($result_pro as $pro){
+                                        ?>
+                                        <option value="<?php echo $pro['pro_id'] ?>"><?php echo $pro['pro_name'] ?></option>
+                                        <?php
+                                          }
+                                        ?>
+>>>>>>> fe966eee327fe30c88780a6f38221255d6e2da4b
                                     </select>
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-sm-12 p-0">
                                     <input type="text" placeholder="ກະລູນາປ້ອນເລກບັນຊີຜູ້ໃຊ້ໄຟ" class="form-control" id="search" name="search">
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-12 p-0">
-                                    <button type="submit" class="btn btn-base">
+                                    <button type="submit" name="serach" class="btn btn-base">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                                     </button>
                                 </div>
@@ -315,7 +332,13 @@ body{
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 </form>
+=======
+<?php
+if(isset($_POST['search'])){
+?>
+>>>>>>> fe966eee327fe30c88780a6f38221255d6e2da4b
 <div class="row">
         <div class="col-12">
             <div class="card card-margin">
@@ -332,6 +355,9 @@ body{
                                     <div class="table-responsive">
                                         <table class="table widget-26">
                                             <tbody>
+                                            <?php
+                                              foreach($search1 as $row){
+                                            ?>
                                                 <tr>
                                                     <td>
                                                         <div class="widget-26-job-emp-img">
@@ -340,33 +366,36 @@ body{
                                                     </td>
                                                     <td>
                                                         <div class="widget-26-job-title">
-                                                            <a href="#">ບັນຊີຜູ້ໃຊ້ໄຟ: 0018 9622, ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ: 0188 939 <br> ຊື່: ນວນທອງ ສຸລະວະດີ ປະເພດຜູ້ໃຊ້ໄຟ: ທີ່ຢູ່ອາໄສ </a>
-                                                            <p class="m-0"><a href="#" class="employer-name">ບ້ານ ທົ່ງພານທອງ, ເຮືອນເລກທີ: 001, ຊັ້ນເຮືອນ: 1,ມ.0302 ເມືອງ ສີສັດຕະນາກ, ນະຄອນຫຼວງວຽງຈັນ</a></p>
+                                                            <a href="#">ບັນຊີຜູ້ໃຊ້ໄຟ: <?php echo $row['cus_id'] ?>, ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ:  <?php echo $row['cus_no'] ?> <br> ຊື່: <?php echo $row['cus_name'] ?> <?php echo $row['cus_surname'] ?> ປະເພດຜູ້ໃຊ້ໄຟ: <?php echo $row['cate_name'] ?> </a>
+                                                            <p class="m-0"><a href="#" class="employer-name">  <?php echo $row['address'] ?></a></p>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="widget-26-job-info">
                                                             <p class="type m-0">ເລກທີບິນ</p>
-                                                            <p class="text-muted m-0">52087200</span></p>
+                                                            <p class="text-muted m-0">  <?php echo $row['billno'] ?></span></p>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="widget-26-job-salary">ວັນທີອອກບິນ<br>17/11/2020</div>
+                                                        <div class="widget-26-job-salary">ບິນປະຈຳເດືອນ<br>  <?php echo date("m/Y",strtotime($row['sell_date'])); ?></div>
                                                     </td>
                                                     <td>
                                                         <div class="widget-26-job-category bg-soft-base">
                                                             <i class="indicator bg-base"></i>
-                                                            <span>ມູນຄ່າລວມ<br>479,512 ກີບ</span>
+                                                            <span>ມູນຄ່າລວມ<br>  <?php echo number_format($row['amount']) ?> ກີບ</span>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="widget-26-job-starred">
-                                                            <a href="indexdetail.php">
+                                                            <a href="indexdetail.php?id=<?php echo $row['billno'] ?>">
                                                                 <i class="fa fa-info" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                <?php
+                                              }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -405,6 +434,12 @@ body{
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
+=======
+<?php
+}
+?>
+>>>>>>> fe966eee327fe30c88780a6f38221255d6e2da4b
 </body>
 </html>
