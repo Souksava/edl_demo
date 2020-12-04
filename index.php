@@ -1,7 +1,7 @@
 <?php
 $path = "../";
 include ("oop/obj.php");
-if(isset($_POST['search'])){
+if(isset($_POST['btnsearch'])){
   $obj->search(trim($_POST['pro_id']),trim($_POST['search']));
 }
 ?>
@@ -291,7 +291,7 @@ body{
                         <div class="col-12">
                             <div class="row no-gutters">
                                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                    <select class="form-control" id="exampleFormControlSelect1" name="province">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="pro_id">
                                         <option value="" disabled selected>-----ເລືອກແຂວງ-----</option>
                                         <?php 
                                         $obj->province();
@@ -308,7 +308,7 @@ body{
                                     <input type="text" placeholder="ກະລູນາປ້ອນເລກບັນຊີຜູ້ໃຊ້ໄຟ" class="form-control" id="search" name="search">
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-12 p-0">
-                                    <button type="submit" name="serach" class="btn btn-base">
+                                    <button type="submit" name="btnsearch" class="btn btn-base">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                                     </button>
                                 </div>
@@ -320,13 +320,10 @@ body{
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-</form>
-=======
+
 <?php
-if(isset($_POST['search'])){
+if(isset($_POST['btnsearch'])){
 ?>
->>>>>>> fe966eee327fe30c88780a6f38221255d6e2da4b
 <div class="row">
         <div class="col-12">
             <div class="card card-margin">
@@ -422,12 +419,9 @@ if(isset($_POST['search'])){
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
-=======
 <?php
 }
 ?>
->>>>>>> fe966eee327fe30c88780a6f38221255d6e2da4b
 </body>
 </html>

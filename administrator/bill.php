@@ -35,12 +35,13 @@
              <div class="col-md-8">
              ຂໍ້ມູນແຈ້ງຄ່າໄຟຟ້າ
                  <div class="table-responsive">
-                     <table class="table" style="width: 1100px;">
+                     <table class="table" style="width: 900px;">
                          <tr>
-                             <th style="width: 110px;" scope="col">ເລກໝໍ້ໄຟ</th>
-                             <th style="width: 110px;" scope="col">ເລກຄັ້ງນີ້</th>
-                             <th style="width: 110px;" scope="col">ເລກຄັ້ງກ່ອນ</th>
-                             <th style="width: 110px;" scope="col">ພະລັງງານໃຊ້ໃນເດືອນ</th>
+                            <th style="width: 30px;" scope="col">No.</th>
+                             <th style="width: 50px;" scope="col">ເລກໝໍ້ໄຟ</th>
+                             <th style="width: 50px;" scope="col">ເລກຄັ້ງນີ້</th>
+                             <th style="width: 50px;" scope="col">ເລກຄັ້ງກ່ອນ</th>
+                             <th style="width: 70px;" scope="col">ພະລັງງານໃຊ້ໃນເດືອນ</th>
                              <th style="width: 75px;"></th>
                          </tr>
                          <?php
@@ -49,11 +50,12 @@
                             foreach($result_list as $row){
                          ?>
                          <tr>
-                             <td><?php echo $no_ += 1; ?></td>
+                            <td><? echo $no_ += 1?></td>
                              <td style="display:none;"><?php echo $row['id']; ?></td>
                              <td><?php echo $row['meter'] ?></td>
                              <td><?php echo $row['no_after'] ?></td>
                              <td><?php echo $row['no_before'] ?></td>
+                             <td><?php echo $row['total'] ?></td>
                              <td>
                              <a href="#" data-toggle="modal" data-target="#exampleModalDeletebill"
                                 class="fa fa-trash toolcolor btnDelete_bill"></a>
