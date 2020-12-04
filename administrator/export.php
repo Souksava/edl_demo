@@ -4,6 +4,10 @@
   $links = "../";
   $session_path = "../";
   include ("../header-footer/header.php");
+  include ("../oop/obj.php");
+  if(isset($_POST['btnSave'])){
+    $obj->form_save($_POST['billno'],$_POST['cus_id'],$_POST['amount'],$_POST['qty_amount'],$_POST['sell_date'],$_POST['monthly']);
+  }
 ?>
 <style>
     table {
@@ -32,14 +36,19 @@ td {
                 <div class="col-md-8">
 <div class="row">
             <div class="col-md-5">
-                <p class="card-text">ເລກທີບິນ: 1</p>
-                <p class="card-text">ເລກບັນຊີຜູ້ໃຊ້ໄຟ: 0016 3746</p>
-                <p class="card-text">ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ: 0163 305</p>
+                <p class="card-text">ເລກທີບິນ: <?php $obj->billno();echo $billno; ?></p>
+                <p class="card-text">ເລກບັນຊີຜູ້ໃຊ້ໄຟ: <?php echo $_POST['cus_id'] ?></p>
+                <?php 
+                    $cus_id = $_POST['cus_id'];
+                    $result_customer = mysqli_query($conn,"select * from customer where cus_id='$cus_id'");
+                    $customer = mysqli_fetch_array($result_customer,MYSQLI_ASSOC);
+                ?>
+                <p class="card-text">ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ: <?php echo $customer['cus_no'] ?></p>
             </div>
             <div class="col-md-6">
             <p class="card-text">&nbsp;</p>
-                <p class="card-text"style="text-align:right;">ຊື່ແລະນາມສະກຸນຜູ້ໃຊ້ໄຟ: ssssssssssssssssssssssssss</p>
-                <p class="card-text" style="text-align:right;">ບ່ອນຢູ່ຜູ້ໃຊ້ໄຟ: ssssssssssssssssssssssssssss</p>
+                <p class="card-text"style="text-align:right;">ຊື່ແລະນາມສະກຸນຜູ້ໃຊ້ໄຟ:  <?php echo $customer['cus_name'] ?>  <?php echo $customer['cus_surname'] ?></p>
+                <p class="card-text" style="text-align:right;">ບ່ອນຢູ່ຜູ້ໃຊ້ໄຟ:  <?php echo $customer['address'] ?></p>
             </div>
         </div>
                 <table width="100%" style="text-align: center;">
@@ -53,26 +62,25 @@ td {
                                                 <th>ຕົວຄູນ</th>
                                                 <th>ພະລັງງານໃຊ້ໃນເດືອນ</th>
                                             </tr>
+                                            <?php
+                                                $obj->listselldetail();
+                                                foreach($result_list as $row){
+                                            ?>
                                             <tr>
-                                                <td>24180022675</td>
+                                                <td><?php echo $row['meter'] ?></td>
                                                 <td>0</td>
-                                                <td>204</td>
+                                                <td><?php echo $row['no_after'] ?></td>
                                                 <td>O</td>
-                                                <td>0</td>
+                                                <td><?php echo $row['no_before'] ?></td>
                                                 <td>2</td>
                                                 <td>1</td>
-                                                <td>204</td>
+                                                <td><?php echo $row['total'] ?></td>
                                             </tr>
-                                            <tr>
-                                                <td>A602105888</td>
-                                                <td>0</td>
-                                                <td>17922</td>
-                                                <td>O</td>
-                                                <td>17922</td>
-                                                <td>2</td>
-                                                <td>1</td>
-                                                <td>0</td>
-                                            </tr>
+                                            <?php
+                                                }
+                                                $obj->sumlist();
+                                                $amount = mysqli_fetch_array($result_sumlist,MYSQLI_ASSOC);
+                                            ?>
                                             <tr>
                                                 <td>ລວມພະລັງງານໃນເດືອນ</td>
                                                 <td></td>
@@ -81,7 +89,7 @@ td {
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>204</td>
+                                                <td><?php echo $amount['amount'] ?></td>
                                             </tr>
                                             <tr>
                                                 <th>ລາຍລະອຽດ</th>
@@ -89,29 +97,44 @@ td {
                                                 <th colspan="2">ລາຄາ</th>
                                                 <th colspan="3">ເງິນຄ່າໃຊ້ໄຟ</th>
                                             </tr>
+                                            <?php
+                                                if($amount['amount'] > 150){
+                                            ?>
                                             <tr>
                                                 <td>0 - 150</td>
                                                 <td colspan="2">150</td>
                                                 <td colspan="2">355</td>
                                                 <td colspan="3">53,250</td>
                                             </tr>
+                                            <?php
+                                                $step1 = 53250;
+                                                }
+                                                if($amount['amount'] > 151){
+                                               $num1 = $amount['amount'] - 150;
+                                               $step2 = $num1 * 710;
+                                               $mainten = 7800;
+                                               $vat = ($step1 + $step2 + $mainten) * 0.1;
+                                            ?>
                                             <tr>
                                                 <td>151 - 461</td>
-                                                <td colspan="2">54</td>
+                                                <td colspan="2"><?php echo $num1 ?></td>
                                                 <td colspan="2">710</td>
-                                                <td colspan="3">38,340</td>
+                                                <td colspan="3"><?php echo number_format($step2)?></td>
                                             </tr>
+                                            <?php
+                                                }
+                                            ?>
                                             <tr>
                                                 <td>ຄ່າບຳລຸງຮັກສາໝໍ້ນັບໄຟ</td>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
-                                                <td colspan="3">7,800</td>
+                                                <td colspan="3"><?php echo number_format($mainten) ?></td>
                                             </tr>
                                             <tr>
                                                 <td>ອາກອນມູນຄ່າເພີ່ມ 10%</td>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
-                                                <td colspan="3">9,939</td>
+                                                <td colspan="3"><?php echo number_format($vat) ?></td>
                                             </tr>
                                             <tr>
                                                 <th colspan="5" style="text-align: left;">
@@ -119,8 +142,11 @@ td {
                                                     ໜີ້ຄ້າງຈ່າຍ:
                                                 </th>
                                                 <th colspan="3">
-                                                    109,329<br>
-                                                    370,183
+                                                    <?php 
+                                                        $total_amount = $step1 + $step2 + $mainten + $vat;
+                                                        echo number_format($total_amount);
+                                                    ?><br>
+                                                    0
                                                 </th>
                                             </tr>
                                             <tr>
@@ -128,7 +154,7 @@ td {
                                                     ລວມເງິນຕ້ອງຈ່າຍທັງໝົດ:
                                                 </th>
                                                 <th colspan="3">
-                                                    479,512
+                                                    <?php echo number_format($total_amount) ?>
                                                 </th>
                                             </tr>
                                             <tr>
@@ -138,8 +164,6 @@ td {
                                             </tr>
                                         </table>
                 </div>
-
-
                 <div class="col-lg-3 font12">
                     <div class="row row-cols-1 row-cols-md-1">
                         <div class="col mb-4">
@@ -147,7 +171,7 @@ td {
                                 <div class="card-body">
                                     <h5 align="center" class="card-title"></h5>
                                     <p class="card-text">
-                                    <form action="export" id="form1" method="POST">
+                                    <form action="export" id="save" method="POST">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 ເລກທີບິນ: 1
@@ -172,6 +196,12 @@ td {
                                                             </div>
                                                             <div class="modal-body" align="center">
                                                                 ທ່ານຕ້ອງການບັນທຶກຂໍ້ມູນ ຫຼື ບໍ່ ?
+                                                                <input type="hidden" name="billno" value="<?php echo $billno ?>">
+                                                                <input type="hidden" name="amount" value="<?php echo $total_amount ?>">
+                                                                <input type="hidden" name="cus_id" value="<?php echo $_POST['cus_id'] ?>">
+                                                                <input type="hidden" name="qty_amount" value="<?php echo $amount['amount'] ?>">
+                                                                <input type="hidden" name="sell_date" value="<?php echo $_POST['sell_date'] ?>">
+                                                                <input type="hidden" name="monthly" value="<?php echo $_POST['monthly'] ?>">
 
                                                             </div>
                                                             <div class="modal-footer">

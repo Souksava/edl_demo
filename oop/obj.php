@@ -1,5 +1,8 @@
 <?php
 $conn = mysqli_connect("Localhost", "root", "", "edl_demo");
+date_default_timezone_set("Asia/Bangkok");
+$datenow = time();
+$Time = date("H:i:s",$datenow);
 class obj{
     public $conn;
     public $search;
@@ -141,7 +144,12 @@ class obj{
     public static function listselldetail(){
         global $conn;
         global $result_list;
-        $result_list = mysqli_query($conn,"select * from listselldetail order by id asc");
+        $result_list = mysqli_query($conn,"select id,meter,no_after,no_before,no_after-no_before as total from listselldetail order by id asc");
+    }
+    public static function sumlist(){
+        global $conn;
+        global $result_sumlist;
+        $result_sumlist = mysqli_query($conn,"select sum(no_after-no_before) as amount from listselldetail order by id asc");
     }
     public static function del_list($id){
         global $conn;
@@ -156,6 +164,30 @@ class obj{
         $result = mysqli_query($conn,"select max(billno) as billno from sell");
         $billno = mysqli_fetch_array($result,MYSQLI_ASSOC);
         $billno = $billno['billno'] + 1;
+    }
+    public static function form_save($billno,$cus_id,$amount,$qty_amount,$sell_date,$monthly){
+        global $conn;
+        global $Time;
+        $resultsell = mysqli_query($conn,"insert into sell values('$billno','$cus_id','$qty_amount','$amount','$sell_date','$Time','$monthly')");
+        if(!$resultsell){
+            echo"<script>";
+            echo"window.location.href='bill?save=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"insert into selldetail(meter,no_before,no_after,total,billno) select meter,no_before,no_after,no_after-no_before,'$billno' from listselldetail");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='bill?save=fail';";
+                echo"</script>";
+            }
+            else{
+                mysqli_query($conn,"delete from listselldetail");
+                echo"<script>";
+                echo"window.location.href='bill?save2=success';";
+                echo"</script>";
+            }
+        }
     }
 }
 $obj = new obj();
