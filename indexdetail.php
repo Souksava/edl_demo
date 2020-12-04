@@ -1,5 +1,8 @@
 <?php
 $path = "../";
+include ("oop/obj.php");
+$obj->searchdetail($_GET['id']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -306,32 +309,32 @@ td {
                                             <label for="">ລັດວິສາຫະກິດໄຟຟ້າລາວ</label><br>
                                             <label for=""> ສາຂາ:</label> ຝ່າຍປະຕິບັດການໄຟຟ້ານະຄອນຫຼວງ<br>
                                             <label for="">ໂທຣ:</label> 243565<br>
-                                            <label for=""> ວັນທີຜະລິດໃບເກັບເງິນຄ່າໄຟຟ້າ:</label> 17/11/2020<br>
+                                            <label for=""> ວັນທີຜະລິດໃບເກັບເງິນຄ່າໄຟຟ້າ:</label> <?php echo date("d/m/Y",strtotime($arr_result['sell_date'])) ?><br>
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-4" align="center">
                                             <img src="image/edl_logo.png" width="70px" height="70px" alt=""><br>
-                                            ປະຈຳເດືອນ: 11/2020
+                                            ປະຈຳເດືອນ:  <?php echo date("m/Y",strtotime($arr_result['sell_date'])) ?>
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-4" align="right">
-                                            <label for="">ເລກບັນຊີຜູ້ໃຊ້ໄຟຟ້າ:</label> 0018 9622<br>
-                                            <label for="">ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ:</label> 0188 939<br>
-                                            <label for="">ປະເພດຜູ້ໃຊ້ໄຟ:</label> ທີ່ຢູ່ອາໄສ<br>
+                                            <label for="">ເລກບັນຊີຜູ້ໃຊ້ໄຟຟ້າ:</label> <?php echo $arr_result['cus_id'] ?><br>
+                                            <label for="">ເລກທີປະຈຳຜູ້ໃຊ້ໄຟ:</label>  <?php echo $arr_result['cus_no'] ?><br>
+                                            <label for="">ປະເພດຜູ້ໃຊ້ໄຟ:</label>  <?php echo $arr_result['cate_name'] ?><br>
                                             <label for="">ເລກບັນຊີ ກຸ່ມ/ແມ່:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </div>
                                     </div>
                                     <hr size="1" width="98%">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label>ຊື່ ແລະ ນາມສະກຸນຜູ້ໃຊ້ໄຟ:</label> ນວນທອງ ສຸລະວະດີ
+                                            <label>ຊື່ ແລະ ນາມສະກຸນຜູ້ໃຊ້ໄຟ:</label>  <?php echo $arr_result['cus_name'] ?>  <?php echo $arr_result['cus_name'] ?>
                                         </div>
                                         <div class="col-md-12">
-                                            <label>ບ່ອນຢູ່ຜູ້ໃຊ້ໄຟ:</label> ທົ່ງພານທອງ, 1, ມ. 0302, ມ.ສີສັດຕະນາກ, ນະຄອນຫຼວງວຽງຈັນ
+                                            <label>ບ່ອນຢູ່ຜູ້ໃຊ້ໄຟ:</label>  <?php echo $arr_result['address'] ?>
                                         </div>
                                         <div class="col-md-12">
-                                            <label>ບ່ອນສົ່ງໃບເກັບເງິນຄ່າໄຟ:</label> ທົ່ງພານທອງ, ເຮືອນເລກທີ 001, ມ. 0302, ເມືອງ ສີສັດຕະນາກ, ນະຄອນຫຼວງວຽງຈັນ 
+                                            <label>ບ່ອນສົ່ງໃບເກັບເງິນຄ່າໄຟ:</label>  <?php echo $arr_result['delivery'] ?>
                                         </div>
                                         <div class="col-xs-12 col-md-6">
-                                            <label for="">ໂທຣ:</label> 0302080312 <br>
+                                            <label for="">ໂທຣ:</label>  <?php echo $arr_result['tel'] ?> <br>
                                             <label for="">ຕູ້ໄປສະນີ:</label> 
                                         </div>
                                         <div class="col-xs-12 col-md-6" align="right">
@@ -351,26 +354,22 @@ td {
                                                 <th>ຕົວຄູນ</th>
                                                 <th>ພະລັງງານໃຊ້ໃນເດືອນ</th>
                                             </tr>
+                                            <?php
+                                              foreach($result as $row){
+                                            ?>
                                             <tr>
-                                                <td>24180022675</td>
+                                                <td><?php echo $row['meter'] ?></td>
                                                 <td>0</td>
-                                                <td>204</td>
+                                                <td><?php echo $row['no_after'] ?></td>
                                                 <td>O</td>
-                                                <td>0</td>
+                                                <td><?php echo $row['meter'] ?></td>
                                                 <td>2</td>
                                                 <td>1</td>
-                                                <td>204</td>
+                                                <td><?php echo $row['total'] ?></td>
                                             </tr>
-                                            <tr>
-                                                <td>A602105888</td>
-                                                <td>0</td>
-                                                <td>17922</td>
-                                                <td>O</td>
-                                                <td>17922</td>
-                                                <td>2</td>
-                                                <td>1</td>
-                                                <td>0</td>
-                                            </tr>
+                                            <?php
+                                              }
+                                            ?>
                                             <tr>
                                                 <td>ລວມພະລັງງານໃນເດືອນ</td>
                                                 <td></td>
@@ -379,7 +378,7 @@ td {
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td>204</td>
+                                                <td><?php echo $amount['total_qty'] ?></td>
                                             </tr>
                                             <tr>
                                                 <th>ລາຍລະອຽດ</th>
@@ -387,38 +386,52 @@ td {
                                                 <th colspan="2">ລາຄາ</th>
                                                 <th colspan="3">ເງິນຄ່າໃຊ້ໄຟ</th>
                                             </tr>
+                                            <?php
+                                                if($amount['amount'] > 150){
+                                            ?>
                                             <tr>
                                                 <td>0 - 150</td>
                                                 <td colspan="2">150</td>
                                                 <td colspan="2">355</td>
                                                 <td colspan="3">53,250</td>
                                             </tr>
+                                            <?php
+                                                $step1 = 53250;
+                                                }
+                                                if($amount['total_qty'] > 151){
+                                               $num1 = $amount['total_qty'] - 150;
+                                               $step2 = $num1 * 710;
+                                               $mainten = 7800;
+                                               $vat = ($step1 + $step2 + $mainten) * 0.1;
+                                            ?>
                                             <tr>
                                                 <td>151 - 461</td>
-                                                <td colspan="2">54</td>
+                                                <td colspan="2"><?php echo $num1 ?></td>
                                                 <td colspan="2">710</td>
-                                                <td colspan="3">38,340</td>
+                                                <td colspan="3"><?php echo number_format($step2)?></td>
                                             </tr>
+                                            <?php
+                                                }
+                                            ?>
                                             <tr>
                                                 <td>ຄ່າບຳລຸງຮັກສາໝໍ້ນັບໄຟ</td>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
-                                                <td colspan="3">7,800</td>
+                                                <td colspan="3"><?php echo number_format($mainten) ?></td>
                                             </tr>
                                             <tr>
                                                 <td>ອາກອນມູນຄ່າເພີ່ມ 10%</td>
                                                 <td colspan="2"></td>
                                                 <td colspan="2"></td>
-                                                <td colspan="3">9,939</td>
-                                            </tr>
-                                            <tr>
+                                                <td colspan="3"><?php echo number_format($vat) ?></td>
+                                            </tr>                                            <tr>
                                                 <th colspan="5" style="text-align: left;">
                                                     ລວມເງິນໃນເດືອນ:<br>
                                                     ໜີ້ຄ້າງຈ່າຍ:
                                                 </th>
                                                 <th colspan="3">
-                                                    109,329<br>
-                                                    370,183
+                                                    <?php echo number_format($amount['amount']) ?><br>
+                                                    0
                                                 </th>
                                             </tr>
                                             <tr>
@@ -426,7 +439,7 @@ td {
                                                     ລວມເງິນຕ້ອງຈ່າຍທັງໝົດ:
                                                 </th>
                                                 <th colspan="3">
-                                                    479,512
+                                                  <?php echo number_format($amount['amount']) ?>
                                                 </th>
                                             </tr>
                                             <tr>
